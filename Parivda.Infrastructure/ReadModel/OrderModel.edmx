@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TestEventSchemaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TestEventSchemaModelStoreContainer">
+          <EntitySet Name="Order" EntityType="TestEventSchemaModel.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderLine" EntityType="TestEventSchemaModel.Store.OrderLine" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_OrderLine_Order" Association="TestEventSchemaModel.Store.FK_OrderLine_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderLine" EntitySet="OrderLine" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderName" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="OrderLine">
+          <Key>
+            <PropertyRef Name="OrderLineId" />
+          </Key>
+          <Property Name="OrderLineId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_OrderLine_Order">
+          <End Role="Order" Type="TestEventSchemaModel.Store.Order" Multiplicity="1" />
+          <End Role="OrderLine" Type="TestEventSchemaModel.Store.OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestEventSchemaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TestEventSchemaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Orders" EntityType="TestEventSchemaModel.Order" />
+          <EntitySet Name="OrderLines" EntityType="TestEventSchemaModel.OrderLine" />
+          <AssociationSet Name="FK_OrderLine_Order" Association="TestEventSchemaModel.FK_OrderLine_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderLine" EntitySet="OrderLines" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Guid" Nullable="false" />
+          <Property Name="OrderName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="OrderLines" Relationship="TestEventSchemaModel.FK_OrderLine_Order" FromRole="Order" ToRole="OrderLine" />
+        </EntityType>
+        <EntityType Name="OrderLine">
+          <Key>
+            <PropertyRef Name="OrderLineId" />
+          </Key>
+          <Property Name="OrderLineId" Type="Guid" Nullable="false" />
+          <Property Name="OrderId" Type="Guid" Nullable="false" />
+          <Property Name="ProductId" Type="Guid" Nullable="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Order" Relationship="TestEventSchemaModel.FK_OrderLine_Order" FromRole="OrderLine" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_OrderLine_Order">
+          <End Role="Order" Type="TestEventSchemaModel.Order" Multiplicity="1" />
+          <End Role="OrderLine" Type="TestEventSchemaModel.OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestEventSchemaModelStoreContainer" CdmEntityContainer="TestEventSchemaEntities">
+          <EntitySetMapping Name="Orders"><EntityTypeMapping TypeName="TestEventSchemaModel.Order"><MappingFragment StoreEntitySet="Order">
+            <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+            <ScalarProperty Name="OrderName" ColumnName="OrderName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="OrderLines"><EntityTypeMapping TypeName="TestEventSchemaModel.OrderLine"><MappingFragment StoreEntitySet="OrderLine">
+            <ScalarProperty Name="OrderLineId" ColumnName="OrderLineId" />
+            <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+            <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="OrderModel">
+        <EntityTypeShape EntityType="TestEventSchemaModel.Order" Width="1.5" PointX="0.75" PointY="1.125" Height="1.5956835937500002" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestEventSchemaModel.OrderLine" Width="1.5" PointX="3" PointY="0.875" Height="1.9802864583333335" IsExpanded="true" />
+        <AssociationConnector Association="TestEventSchemaModel.FK_OrderLine_Order" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="1.9228417968750002" />
+          <ConnectorPoint PointX="3" PointY="1.9228417968750002" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

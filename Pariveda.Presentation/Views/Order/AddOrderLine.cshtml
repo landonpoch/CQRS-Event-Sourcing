@@ -1,0 +1,13 @@
+﻿@model Pariveda.Presentation.Controllers.CreateOrderLineModel
+@{
+    ViewBag.Title = "AddOrderLine";
+}
+
+<h2>AddOrderLine</h2>
+
+@using (Html.BeginForm("AddOrderLine", "Order"))
+{
+    @Html.HiddenFor(m => m.Id)
+    <label>Product Name:</label>@Html.TextBoxFor(m => m.ProductName)<br />
+    <input type="submit" value="Add Order Line" />
+}
