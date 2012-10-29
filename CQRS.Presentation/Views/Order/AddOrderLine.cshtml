@@ -1,0 +1,15 @@
+﻿@model CQRS.Presentation.Controllers.CreateOrderLineModel
+@{
+    ViewBag.Title = "AddOrderLine";
+}
+
+<span>@ViewBag.Result</span><br />
+<h2>AddOrderLine</h2>
+
+@using (Html.BeginForm("AddOrderLine", "Order"))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Version)
+    <label>Product Name:</label>@Html.TextBoxFor(m => m.ProductName)<br />
+    <input type="submit" value="Add Order Line" />
+}

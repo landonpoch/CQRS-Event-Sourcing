@@ -1,0 +1,29 @@
+﻿@using CQRS.Presentation.ReadService
+@model List<OrderIndexDto>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Order Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var order in Model)
+    { 
+     <tr>
+        <td>@Html.ActionLink(order.OrderName, "Details", new { id = order.OrderId })</td>
+     </tr>
+    }
+    </tbody>
+</table>
+
+@Html.ActionLink("Create New Order", "Create")
+
+</div>

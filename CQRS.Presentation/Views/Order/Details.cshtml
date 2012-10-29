@@ -1,0 +1,26 @@
+﻿@using CQRS.Presentation.ReadService
+@model OrderDetailsDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<label>Order Name:</label> @Html.DisplayTextFor(o => o.OrderName)
+<table>
+    <thead>
+    <tr>
+        <th>Order Lines</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var orderLine in Model.OrderLines)
+    { 
+    <tr>
+        <td>@orderLine.ProductName</td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+@Html.ActionLink("Add Order Line", "AddOrderLine", "Order", new { id = Model.OrderId, version = Model.Version }, new { })
