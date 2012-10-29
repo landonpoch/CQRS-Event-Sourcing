@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TestEventSchemaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TestEventSchemaModelStoreContainer">
+          <EntitySet Name="OrderDetails" EntityType="TestEventSchemaModel.Store.OrderDetails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderIndex" EntityType="TestEventSchemaModel.Store.OrderIndex" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderItemDetails" EntityType="TestEventSchemaModel.Store.OrderItemDetails" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_OrderItemDetails_OrderDetails" Association="TestEventSchemaModel.Store.FK_OrderItemDetails_OrderDetails">
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+            <End Role="OrderItemDetails" EntitySet="OrderItemDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Version" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderIndex">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderItemDetails">
+          <Key>
+            <PropertyRef Name="OrderItemId" />
+          </Key>
+          <Property Name="OrderItemId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_OrderItemDetails_OrderDetails">
+          <End Role="OrderDetails" Type="TestEventSchemaModel.Store.OrderDetails" Multiplicity="1" />
+          <End Role="OrderItemDetails" Type="TestEventSchemaModel.Store.OrderItemDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderItemDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestEventSchemaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TestEventSchemaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OrderDetails" EntityType="TestEventSchemaModel.OrderDetail" />
+          <EntitySet Name="OrderIndexes" EntityType="TestEventSchemaModel.OrderIndex" />
+          <EntitySet Name="OrderItemDetails" EntityType="TestEventSchemaModel.OrderItemDetail" />
+          <AssociationSet Name="FK_OrderItemDetails_OrderDetails" Association="TestEventSchemaModel.FK_OrderItemDetails_OrderDetails">
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+            <End Role="OrderItemDetail" EntitySet="OrderItemDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Type="Guid" Name="OrderId" Nullable="false" />
+          <Property Type="Int32" Name="Version" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderItemDetails" Relationship="TestEventSchemaModel.FK_OrderItemDetails_OrderDetails" FromRole="OrderDetail" ToRole="OrderItemDetail" />
+        </EntityType>
+        <EntityType Name="OrderIndex">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Type="Guid" Name="OrderId" Nullable="false" />
+          <Property Type="String" Name="OrderName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrderItemDetail">
+          <Key>
+            <PropertyRef Name="OrderItemId" />
+          </Key>
+          <Property Type="Guid" Name="OrderItemId" Nullable="false" />
+          <Property Type="Guid" Name="OrderId" Nullable="false" />
+          <Property Type="Guid" Name="ProductId" Nullable="false" />
+          <Property Type="String" Name="ProductName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderDetail" Relationship="TestEventSchemaModel.FK_OrderItemDetails_OrderDetails" FromRole="OrderItemDetail" ToRole="OrderDetail" />
+        </EntityType>
+        <Association Name="FK_OrderItemDetails_OrderDetails">
+          <End Type="TestEventSchemaModel.OrderDetail" Role="OrderDetail" Multiplicity="1" />
+          <End Type="TestEventSchemaModel.OrderItemDetail" Role="OrderItemDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderItemDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestEventSchemaModelStoreContainer" CdmEntityContainer="TestEventSchemaEntities">
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="TestEventSchemaModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderIndexes">
+            <EntityTypeMapping TypeName="TestEventSchemaModel.OrderIndex">
+              <MappingFragment StoreEntitySet="OrderIndex">
+                <ScalarProperty Name="OrderName" ColumnName="OrderName" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItemDetails">
+            <EntityTypeMapping TypeName="TestEventSchemaModel.OrderItemDetail">
+              <MappingFragment StoreEntitySet="OrderItemDetails">
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderItemId" ColumnName="OrderItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ReadModel">
+        <EntityTypeShape EntityType="TestEventSchemaModel.OrderDetail" Width="1.5" PointX="0.75" PointY="1" Height="1.7879850260416665" />
+        <EntityTypeShape EntityType="TestEventSchemaModel.OrderIndex" Width="1.5" PointX="0.75" PointY="3.25" Height="1.4033821614583335" />
+        <EntityTypeShape EntityType="TestEventSchemaModel.OrderItemDetail" Width="1.5" PointX="3" PointY="0.875" Height="1.9802864583333335" />
+        <AssociationConnector Association="TestEventSchemaModel.FK_OrderItemDetails_OrderDetails" >
+          <ConnectorPoint PointX="2.25" PointY="1.8939925130208333" />
+          <ConnectorPoint PointX="3" PointY="1.8939925130208333" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -5,7 +5,7 @@
     <Name>Pariveda.Database.ReadModel</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.0</ProjectVersion>
-    <ProjectGuid>{414fde92-eadf-4153-a3f5-16989e220d24}</ProjectGuid>
+    <ProjectGuid>{67cbc824-a49e-4e9b-a947-360f3dfe65c3}</ProjectGuid>
     <DSP>Microsoft.Data.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <ShowWizard>False</ShowWizard>
@@ -145,19 +145,25 @@
     <Build Include="Schema Objects\Database Level Objects\Storage\Files\TestEventSchema.sqlfile.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_OrderLine_Order.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_OrderItemDetails_OrderDetails.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Order.pkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_OrderDetails.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_OrderLine.pkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_OrderItemDetails.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Order.table.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_OrderIndex.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\OrderLine.table.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\OrderIndex.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\OrderDetails.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\OrderItemDetails.table.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Database Level Objects\Service Broker\Routes\AutoCreatedLocal.route.sql">

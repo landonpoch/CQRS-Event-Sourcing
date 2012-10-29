@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Pariveda.Application.DTOs" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Pariveda.Application.DTOs" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:14678/ReadService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfOrderIndexDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderIndexDto" nillable="true" type="tns:OrderIndexDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderIndexDto" nillable="true" type="tns:ArrayOfOrderIndexDto" />
+  <xs:complexType name="OrderIndexDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OrderId" type="ser:guid" />
+      <xs:element minOccurs="0" name="OrderName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderIndexDto" nillable="true" type="tns:OrderIndexDto" />
+  <xs:complexType name="OrderDetailsDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OrderId" type="ser:guid" />
+      <xs:element minOccurs="0" name="OrderLines" nillable="true" type="tns:ArrayOfOrderItemDto" />
+      <xs:element minOccurs="0" name="OrderName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderDetailsDto" nillable="true" type="tns:OrderDetailsDto" />
+  <xs:complexType name="ArrayOfOrderItemDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderItemDto" nillable="true" type="tns:OrderItemDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderItemDto" nillable="true" type="tns:ArrayOfOrderItemDto" />
+  <xs:complexType name="OrderItemDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderItemDto" nillable="true" type="tns:OrderItemDto" />
+</xs:schema>

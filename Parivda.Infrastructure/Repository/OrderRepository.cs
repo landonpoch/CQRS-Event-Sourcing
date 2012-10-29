@@ -18,7 +18,7 @@ namespace Pariveda.Domain
 
         public void Save(Order order, int version)
         {
-            _store.SaveChanges(order.Id, version, order.GetUncommitedChanges());
+            _store.SaveChanges(order.Id, order.GetType(), version, order.GetUncommitedChanges());
         }
 
         public Order GetById(Guid id)

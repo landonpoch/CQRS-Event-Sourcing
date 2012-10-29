@@ -1,4 +1,4 @@
-﻿@using Pariveda.Domain.DTOs
+﻿@using Pariveda.Presentation.ReadService
 @model OrderDetailsDto
 @{
     ViewBag.Title = "Details";
@@ -23,4 +23,4 @@
     </tbody>
 </table>
 
-@Html.ActionLink("Add Order Line", "AddOrderLine", "Order", new { id = Model.OrderId }, new { })
+@Html.ActionLink("Add Order Line", "AddOrderLine", "Order", new { id = Model.OrderId, version = Model.Version }, new { })

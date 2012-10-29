@@ -3,33 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Pariveda.Domain.Services;
 using Pariveda.Domain;
 using Pariveda.Domain.Commands;
+using Pariveda.Presentation.WcfExtensions;
+using MassTransit;
+using Pariveda.Domain.Messages.Commands;
 
 namespace Pariveda.Presentation.Controllers
 {
     public class OrderController : Controller
     {
-        private IOrderRepository _repo;
-        private IReadModel _readModel;
+        private const int ServiceTimeout = 30; // Could be configurable
 
-        public OrderController(IOrderRepository repo, IReadModel readModel)
+        private IServiceBus _bus;
+        private IReadServiceFactory _factory;
+
+        public OrderController(IReadServiceFactory factory, IServiceBus bus)
         {
-            _repo = repo;
-            _readModel = readModel;
+            _bus = bus;
+            _factory = factory;
         }
 
         public ActionResult Index()
         {
-            var orders = _readModel.GetAllOrders();
-            return View(orders);
+            using (var client = _factory.CreateReadService())
+            {
+                var orders = client.GetAllOrders().ToList();
+                return View(orders);
+            }
         }
 
         public ActionResult Details(Guid id)
         {
-            var orderDetails = _readModel.GetOrderDetails(id);
-            return View(orderDetails);
+            using (var client = _factory.CreateReadService())
+            {
+                var orderDetails = client.GetOrderDetails(id);
+                return View(orderDetails);
+            }
         }
 
         public ActionResult Create()
@@ -43,21 +53,20 @@ namespace Pariveda.Presentation.Controllers
             // Presentation Logic
             Guid orderId = Guid.NewGuid();
             var createOrderCommand = new CreateNewOrder(orderId, orderName);
-            
-            // Application Logic
-            var order = new Order(createOrderCommand.OrderId, createOrderCommand.OrderName);
-            _repo.Save(order, 0);
-            
-            // Presentation Logic
-            ViewBag.Result = "Order Successfully Saved";
+
+            CreateNewOrderResult result;
+            Send(createOrderCommand, out result);
+
+            ViewBag.Result = result.Message;
             return View();
         }
 
-        public ActionResult AddOrderLine(Guid id)
+        public ActionResult AddOrderLine(Guid id, int version)
         {
             var model = new CreateOrderLineModel
             {
                 Id = id,
+                Version = version
             };
             return View(model);
         }
@@ -66,22 +75,34 @@ namespace Pariveda.Presentation.Controllers
         public ActionResult AddOrderLine(CreateOrderLineModel model)
         {
             // Presentation Logic
-            var command = new AddOrderItem(Guid.NewGuid(), model.ProductName, model.Id);
-            
-            // Application Logic
-            var order = _repo.GetById(model.Id);
-            order.AddOrderItem(command.ProductId, command.ProductName, command.OrderId);
-            _repo.Save(order, 1); // TODO: Figure out versioning
+            var command = new AddOrderItem(Guid.NewGuid(), model.ProductName, model.Id, model.Version);
 
-            // Presentation Logic
-            ViewBag.Result = "Order Line Successfully Added";
+            AddOrderItemResult result;
+            Send(command, out result);
+
+            ViewBag.Result = result.Message;
             return View();
         }
+    
+        private void Send<T, TResult>(T command, out TResult result)
+            where T : Command
+            where TResult : CommandResult, new()
+        {
+            var tempResult = new TResult();
+            _bus.PublishRequest<T>(command, ctx =>
+            {
+                ctx.Handle<TResult>(msg => tempResult = msg);
+                ctx.SetTimeout(new TimeSpan(0, 0, ServiceTimeout));
+            });
+            result = tempResult;
+        }
+    
     }
 
     public class CreateOrderLineModel
     {
         public Guid Id { get; set; }
         public string ProductName { get; set; }
+        public int Version { get; set; }
     }
 }

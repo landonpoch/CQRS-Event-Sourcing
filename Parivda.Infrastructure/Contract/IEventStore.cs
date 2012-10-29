@@ -7,7 +7,7 @@ namespace Parivda.EventStore
 {
     public interface IEventStore
     {
-        void SaveChanges(Guid aggregateId, int originatingVersion, IEnumerable<Event> events);
+        void SaveChanges(Guid aggregateId, Type aggregateType, int originatingVersion, IEnumerable<Event> events);
         IEnumerable<Event> GetEvents(Guid aggregateId);
     }
 }

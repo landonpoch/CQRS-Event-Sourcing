@@ -4,18 +4,16 @@
 namespace Pariveda.Presentation.App_Start
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using System.Web;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
-    using Parivda.EventStore;
-    using Pariveda.Presentation.Common;
-    
+    using Pariveda.Presentation.WcfExtensions;
+    using Pariveda.Presentation.ReadService;
+    using MassTransit;
+
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -35,6 +33,7 @@ namespace Pariveda.Presentation.App_Start
         /// </summary>
         public static void Stop()
         {
+            bootstrapper.Kernel.Get<IServiceBus>().Dispose(); // Clean up
             bootstrapper.ShutDown();
         }
         
@@ -58,12 +57,16 @@ namespace Pariveda.Presentation.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            IEnumerable<Assembly> assemblies = AppDomain.CurrentDomain.GetAssemblies()
-                .ToList()
-                .Where(a => a.FullName.Contains("Pariveda"));
-            kernel.Load(assemblies);
-
-            kernel.Bind<IApplicationSettings>().To<ApplicationSettings>();
+            kernel.Bind<IReadServiceFactory>().To<ReadServiceFactory>();
+            kernel.Bind<IServiceBus>().ToMethod(ctx =>
+            {
+                return ServiceBusFactory.New(sbc =>
+                {
+                    sbc.UseRabbitMq();
+                    sbc.ReceiveFrom("rabbitmq://localhost/client");
+                });
+            })
+            .InSingletonScope();
         }
     }
 }

@@ -59,35 +59,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contract\IBus.cs" />
     <Compile Include="Contract\IEventSerializer.cs" />
     <Compile Include="Contract\IEventStore.cs" />
     <Compile Include="EventStore\EventStore.cs" />
     <Compile Include="InfrastructureModule.cs" />
-    <Compile Include="ReadModel\EventHandlers.cs" />
-    <Compile Include="ReadModel\OrderModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OrderModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="ReadModel\ReadModel.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceBus\ServiceBus.cs" />
+    <Compile Include="Services\AppServiceBus.cs" />
     <Compile Include="Services\EventSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="ReadModel\OrderModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OrderModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pariveda.Domain\Pariveda.Domain.csproj">
       <Project>{57304B6B-9FE5-4446-BB7B-61115FFDFE80}</Project>
       <Name>Pariveda.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pariveda.Messages\Pariveda.Messages.csproj">
+      <Project>{113FC498-7230-4B09-8533-32F3F1C117F3}</Project>
+      <Name>Pariveda.Messages</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

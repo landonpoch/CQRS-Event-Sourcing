@@ -40,25 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\AddOrderItem.cs" />
-    <Compile Include="Commands\Command.cs" />
     <Compile Include="Common\IApplicationSettings.cs" />
-    <Compile Include="DTOs\OrderDetailsDto.cs" />
-    <Compile Include="DTOs\OrderDto.cs" />
-    <Compile Include="DTOs\OrderLineDto.cs" />
     <Compile Include="Entities\AggregateRoot.cs" />
-    <Compile Include="Commands\CreateNewOrder.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
-    <Compile Include="Events\Event.cs" />
-    <Compile Include="Events\OrderCreated.cs" />
-    <Compile Include="Events\OrderItemAdded.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IEventHandlers.cs" />
+    <Compile Include="Services\IBus.cs" />
     <Compile Include="Services\IOrderRepository.cs" />
-    <Compile Include="Services\IReadModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Pariveda.Messages\Pariveda.Messages.csproj">
+      <Project>{113FC498-7230-4B09-8533-32F3F1C117F3}</Project>
+      <Name>Pariveda.Messages</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

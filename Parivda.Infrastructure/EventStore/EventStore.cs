@@ -6,8 +6,8 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Transactions;
 using MassTransit;
-using Pariveda.Infrastructure.Contract;
 using Pariveda.Domain;
+using Pariveda.Application.Services;
 
 namespace Parivda.EventStore
 {
@@ -28,34 +28,20 @@ namespace Parivda.EventStore
 
         #region IEventStore Members
 
-        public void SaveChanges(Guid aggregateId, int originatingVersion, IEnumerable<Event> events)
+        public void SaveChanges(Guid aggregateId, Type aggregateType, int originatingVersion, IEnumerable<Event> events)
         {
             ExecuteProcedure(WriteEventSprocName, cmd =>
             {
-                using (var scope = new TransactionScope())
+                // TODO: Eventually, this call should be batched
+                events.ToList().ForEach(e =>
                 {
-                    try
-                    {
-                        events.ToList().ForEach(e =>
-                        {
-                            cmd.Parameters.Add("@AggregateId", SqlDbType.UniqueIdentifier).Value = aggregateId;
-                            cmd.Parameters.Add("@Type", SqlDbType.VarChar).Value = e.GetType().ToString();
-                            cmd.Parameters.Add("@Data", SqlDbType.VarBinary).Value = _serializer.Serialize(e);
-                            cmd.Parameters.Add("@ExpectedVersion", SqlDbType.Int).Value = originatingVersion;
-
-                            cmd.ExecuteNonQuery(); // Insert into the DB
-                            _bus.Publish(e); // Publish to the enterprise
-                        });
-                        scope.Complete();
-                    }
-                    catch (SqlException e)
-                    {
-                        // TODO: Figure out exception strategy for concurrency issues
-                    }
-                }
+                    SaveAndPublish(cmd, e, aggregateId, aggregateType, originatingVersion);
+                    originatingVersion++; // Increment the version for each event
+                });
             });
         }
 
+        // TODO: Implement snapshotting
         public IEnumerable<Event> GetEvents(Guid aggregateId)
         {
             var events = new List<Event>();
@@ -88,6 +74,29 @@ namespace Parivda.EventStore
             {
                 conn.Open();
                 sqlAction.Invoke(command);
+            }
+        }
+
+        private void SaveAndPublish(SqlCommand cmd, Event @event, Guid aggregateId, Type aggregateType, int originatingVersion)
+        {
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    @event.Version = originatingVersion;
+                    cmd.Parameters.Add("@AggregateId", SqlDbType.UniqueIdentifier).Value = aggregateId;
+                    cmd.Parameters.Add("@Type", SqlDbType.VarChar).Value = aggregateType.ToString();
+                    cmd.Parameters.Add("@Data", SqlDbType.VarBinary).Value = _serializer.Serialize(@event);
+                    cmd.Parameters.Add("@ExpectedVersion", SqlDbType.Int).Value = originatingVersion;
+
+                    cmd.ExecuteNonQuery(); // Insert into the DB
+                    _bus.Publish(@event); // Publish to the enterprise
+                    scope.Complete();
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("An error occured while trying to insert into the event log.", e);
             }
         }
     }

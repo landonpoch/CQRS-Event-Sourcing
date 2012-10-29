@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a041d629-2e98-4cb7-bf13-024118f77539" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:14678/ReadService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ReadService.xsd" MetadataType="Schema" ID="317c1cf7-c95d-4c3c-a9f3-706f0def599a" SourceId="1" SourceUrl="http://localhost:14678/ReadService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReadService.wsdl" MetadataType="Wsdl" ID="5299cf87-e8d0-473e-b320-7d259abb516f" SourceId="1" SourceUrl="http://localhost:14678/ReadService.svc?wsdl" />
+    <MetadataFile FileName="ReadService.disco" MetadataType="Disco" ID="d58aabf7-1402-42ab-a40a-01a72d3c86a6" SourceId="1" SourceUrl="http://localhost:14678/ReadService.svc?disco" />
+    <MetadataFile FileName="ReadService1.xsd" MetadataType="Schema" ID="b9267447-784f-4807-849b-c8502301178d" SourceId="1" SourceUrl="http://localhost:14678/ReadService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ReadService2.xsd" MetadataType="Schema" ID="67d0e0eb-67c3-4907-be40-4478e2644d8c" SourceId="1" SourceUrl="http://localhost:14678/ReadService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ReadService3.xsd" MetadataType="Schema" ID="5f37c008-036e-4498-9241-1023a1b73e02" SourceId="1" SourceUrl="http://localhost:14678/ReadService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
