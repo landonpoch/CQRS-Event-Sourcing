@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CQRS.Messages.Events;
 
-namespace Parivda.EventStore
+namespace CQRS.Infrastructure.Contract
 {
     public interface IEventSerializer
     {

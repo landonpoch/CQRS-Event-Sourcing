@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Parivda.EventStore;
 using CQRS.Domain.Entities;
 using CQRS.Domain.Events;
-using CQRS.Domain;
+using CQRS.Messages.Events;
 
 namespace CQRS.Domain
 {
@@ -33,8 +30,8 @@ namespace CQRS.Domain
             foreach (Event @event in history)
             {
                 // See if there is a more elegant way to call these methods
-                if (@event is OrderCreated) ApplyChange<OrderCreated>(@event as OrderCreated, false, Apply);
-                if (@event is OrderItemAdded) ApplyChange<OrderItemAdded>(@event as OrderItemAdded, false, Apply);
+                if (@event is OrderCreated) ApplyChange(@event as OrderCreated, false, Apply);
+                if (@event is OrderItemAdded) ApplyChange(@event as OrderItemAdded, false, Apply);
             }
         }
 

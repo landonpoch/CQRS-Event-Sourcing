@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Parivda.EventStore;
-using System.Configuration;
+﻿using System.Configuration;
+using CQRS.Domain.Common;
 
 namespace CQRS.Presentation.Common
 {

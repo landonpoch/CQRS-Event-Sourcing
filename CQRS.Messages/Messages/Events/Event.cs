@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CQRS.Domain.Messages;
 
-namespace Parivda.EventStore
+namespace CQRS.Messages.Events
 {
     public abstract class Event : Message
     {

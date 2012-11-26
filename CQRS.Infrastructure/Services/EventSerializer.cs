@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
+using CQRS.Infrastructure.Contract;
+using CQRS.Messages.Events;
 using Newtonsoft.Json;
 
-namespace Parivda.EventStore
+namespace CQRS.Infrastructure.Services
 {
     public class EventSerializer : IEventSerializer
     {

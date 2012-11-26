@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Ninject;
-using Ninject.Modules;
+﻿using CQRS.Domain;
 using CQRS.Domain.Services;
-using CQRS.Domain;
-using MassTransit;
-using CQRS.Domain.Events;
+using CQRS.Infrastructure.Contract;
+using CQRS.Infrastructure.Services;
+using Ninject.Modules;
 
-namespace Parivda.EventStore
+namespace CQRS.Infrastructure.EventStore
 {
     public class InfrastructureModule : NinjectModule
     {

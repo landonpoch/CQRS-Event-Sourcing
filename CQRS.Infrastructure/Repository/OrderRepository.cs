@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Parivda.EventStore;
 using CQRS.Domain.Services;
+using CQRS.Infrastructure.EventStore;
+using CQRS.Messages.Events;
 
 namespace CQRS.Domain
 {

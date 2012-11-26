@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Parivda.EventStore;
 using CQRS.Domain.Messages;
 using CQRS.Domain.Messages.Commands;
 

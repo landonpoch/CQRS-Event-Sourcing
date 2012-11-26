@@ -1,9 +1,9 @@
-﻿using MassTransit;
-using Ninject.Modules;
-using Parivda.EventStore;
-using CQRS.Application.Services;
+﻿using CQRS.Application.Services;
+using CQRS.Domain.Common;
 using CQRS.Presentation.Common;
 using CQRS.WriteServiceConsole.Services;
+using MassTransit;
+using Ninject.Modules;
 
 namespace CQRS.WriteServiceConsole
 {

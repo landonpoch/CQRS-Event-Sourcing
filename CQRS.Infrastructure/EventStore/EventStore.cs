@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Transactions;
-using MassTransit;
-using CQRS.Domain;
 using CQRS.Application.Services;
+using CQRS.Domain.Common;
+using CQRS.Infrastructure.Contract;
+using CQRS.Messages.Events;
 
-namespace Parivda.EventStore
+namespace CQRS.Infrastructure.EventStore
 {
     public class EventStore : IEventStore
     {

@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MassTransit;
-using CQRS.Domain;
-using CQRS.Domain.Events;
-using Parivda.EventStore;
-using CQRS.Application.Services;
 using CQRS.Domain.Messages;
 using CQRS.Domain.Messages.Commands;
+using MassTransit;
 
 namespace CQRS.Application.Services
 {
