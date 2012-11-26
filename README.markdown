@@ -8,7 +8,7 @@ To run do the following:
  2. Verify your connection strings are correct  
     a. The write solution needs a connection to the event store database  
     b. The read solution needs a connection to the read database schema  
- 3. Use Nuget to download the libraries for each solution  
+ 3. Use Nuget to download the libraries for each solution (or allow auto-download upon build)  
     a. Presentation needs MassTransit.RabbitMQ and Ninject.MVC3 on the executing assembly  
     b. Write needs MassTransit.RabbitMQ, Ninject and Topshelf on the WriteService assembly  
     c. Write also needs Ninject and Json.Net on the Infrastructure assembly  
