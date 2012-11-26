@@ -22,16 +22,14 @@ namespace CQRS.Domain
         public Order(Guid orderId, string orderName)
         {
             // Behavior
-            ApplyChange(new OrderCreated(orderId, orderName), Apply);
+            ApplyChange(new OrderCreated(orderId, orderName));
         }
 
         public Order(IEnumerable<Event> history)
         {
             foreach (Event @event in history)
             {
-                // See if there is a more elegant way to call these methods
-                if (@event is OrderCreated) ApplyChange(@event as OrderCreated, false, Apply);
-                if (@event is OrderItemAdded) ApplyChange(@event as OrderItemAdded, false, Apply);
+                ApplyChange(@event, false);
             }
         }
 
@@ -40,10 +38,17 @@ namespace CQRS.Domain
         public void AddOrderItem(Guid productId, string productName, Guid orderId)
         {
             // Behavior
-            ApplyChange(new OrderItemAdded(productId, productName, orderId), Apply);
+            ApplyChange(new OrderItemAdded(productId, productName, orderId));
         }
 
         #region Private Methods
+
+        protected override void Apply(Event @event)
+        {
+            // TODO: See if there is a generic way to apply the correct state changes
+            if (@event is OrderCreated) Apply(@event as OrderCreated);
+            if (@event is OrderItemAdded) Apply(@event as OrderItemAdded);
+        }
 
         private void Apply(OrderCreated @event)
         {

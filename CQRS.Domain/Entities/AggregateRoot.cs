@@ -10,16 +10,14 @@ namespace CQRS.Domain
 
         private readonly List<Event> _changes = new List<Event>();
 
-        protected void ApplyChange<T>(T @event, Action<T> apply)
-            where T : Event
+        protected void ApplyChange(Event @event)
         {
-            ApplyChange(@event, true, apply);
+            ApplyChange(@event, true);
         }
 
-        protected void ApplyChange<T>(T @event, bool isNew, Action<T> apply)
-            where T : Event
+        protected void ApplyChange(Event @event, bool isNew)
         {
-            apply.Invoke(@event);
+            Apply(@event);
             if (isNew) _changes.Add(@event);
         }
 
@@ -27,5 +25,7 @@ namespace CQRS.Domain
         {
             return _changes;
         }
+
+        protected abstract void Apply(Event @event);
     }
 }
