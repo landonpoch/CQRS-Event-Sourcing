@@ -43,11 +43,10 @@ namespace CQRS.Domain
 
         #region Private Methods
 
-        protected override void Apply(Event @event)
+        // This method is used to call the correct apply method for the event
+        protected override void ApplyEvent(Event @event)
         {
-            // TODO: See if there is a generic way to apply the correct state changes
-            if (@event is OrderCreated) Apply(@event as OrderCreated);
-            if (@event is OrderItemAdded) Apply(@event as OrderItemAdded);
+            Apply((dynamic)@event);
         }
 
         private void Apply(OrderCreated @event)

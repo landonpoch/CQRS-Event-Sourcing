@@ -11,7 +11,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Infrastructure", "CQRS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.WriteService", "CQRS.WriteService\CQRS.WriteService.csproj", "{D2103CC5-555A-4CCA-B699-FA7080BE6CA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Write.Test", "CQRS.Write.Test\CQRS.Write.Test.csproj", "{A7679EB6-B34D-4945-AD1A-D09E2117BA48}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{61BACB13-C043-412E-BBF7-54307C67FF6D}"
+	ProjectSection(SolutionItems) = preProject
+		CQRS.WriteModel.vsmdi = CQRS.WriteModel.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = CQRS.WriteModel.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -75,6 +87,16 @@ Global
 		{D2103CC5-555A-4CCA-B699-FA7080BE6CA7}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D2103CC5-555A-4CCA-B699-FA7080BE6CA7}.Release|x86.ActiveCfg = Release|x86
 		{D2103CC5-555A-4CCA-B699-FA7080BE6CA7}.Release|x86.Build.0 = Release|x86
+		{A7679EB6-B34D-4945-AD1A-D09E2117BA48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7679EB6-B34D-4945-AD1A-D09E2117BA48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7679EB6-B34D-4945-AD1A-D09E2117BA48}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A7679EB6-B34D-4945-AD1A-D09E2117BA48}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A7679EB6-B34D-4945-AD1A-D09E2117BA48}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A7679EB6-B34D-4945-AD1A-D09E2117BA48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7679EB6-B34D-4945-AD1A-D09E2117BA48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7679EB6-B34D-4945-AD1A-D09E2117BA48}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A7679EB6-B34D-4945-AD1A-D09E2117BA48}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A7679EB6-B34D-4945-AD1A-D09E2117BA48}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
