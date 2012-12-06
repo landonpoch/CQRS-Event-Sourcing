@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Transactions;
-using CQRS.Application.Services;
+using CQRS.Domain.Services;
 using CQRS.Domain.Common;
 using CQRS.Infrastructure.Contract;
 using CQRS.Messages.Events;

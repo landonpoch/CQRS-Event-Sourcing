@@ -5,14 +5,13 @@ using System.Text;
 using CQRS.Domain.Messages;
 using CQRS.Domain.Messages.Commands;
 
-namespace CQRS.Application.Services
+namespace CQRS.Domain.Services
 {
-    public interface IBus
+    public interface IBus : IDisposable
     {
         void Publish(Message message);
         void SubscribeHandler<T, TResult>(Func<T, TResult> function)
             where T : Message
             where TResult : CommandResult;
-        void Dispose();
     }
 }

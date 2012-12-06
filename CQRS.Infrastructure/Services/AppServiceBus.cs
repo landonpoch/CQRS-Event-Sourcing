@@ -2,8 +2,9 @@
 using CQRS.Domain.Messages;
 using CQRS.Domain.Messages.Commands;
 using MassTransit;
+using CQRS.Domain.Services;
 
-namespace CQRS.Application.Services
+namespace CQRS.Infrastructure.Services
 {
     public class AppServiceBus : IBus
     {

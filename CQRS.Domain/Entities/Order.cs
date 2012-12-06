@@ -43,8 +43,8 @@ namespace CQRS.Domain
 
         #region Private Methods
 
-        // This method is used to call the correct apply method for the event
-        protected override void ApplyEvent(Event @event)
+        // This method is used to call the correct apply method for each type of event
+        protected override void Apply(Event @event)
         {
             Apply((dynamic)@event);
         }

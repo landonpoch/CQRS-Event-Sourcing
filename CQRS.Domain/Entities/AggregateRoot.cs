@@ -17,7 +17,7 @@ namespace CQRS.Domain
 
         protected void ApplyChange(Event @event, bool isNew)
         {
-            ApplyEvent(@event);
+            Apply(@event);
             if (isNew) _changes.Add(@event);
         }
 
@@ -26,6 +26,6 @@ namespace CQRS.Domain
             return _changes;
         }
 
-        protected abstract void ApplyEvent(Event @event);
+        protected abstract void Apply(Event @event);
     }
 }
