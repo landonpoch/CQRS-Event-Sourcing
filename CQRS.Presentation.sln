@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Messages", "CQRS.Messages\CQRS.Messages.csproj", "{113FC498-7230-4B09-8533-32F3F1C117F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Presentation", "CQRS.Presentation\CQRS.Presentation.csproj", "{D3294EFD-A7CD-4FB8-A41A-C6DDB2D14837}"

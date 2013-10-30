@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Messages", "CQRS.Messages\CQRS.Messages.csproj", "{113FC498-7230-4B09-8533-32F3F1C117F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Application", "CQRS.Application\CQRS.Application.csproj", "{D0240A91-BF7D-45A2-991E-0B77405E044C}"
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.ReadService", "CQRS.Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.DataAccess", "CQRS.DataAccess\CQRS.DataAccess.csproj", "{8507007F-97E5-4288-9112-93F437E7BFBB}"
 EndProject
-Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "CQRS.Database.ReadModel", "CQRS.Database.ReadModel\CQRS.Database.ReadModel.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CQRS.Database.ReadModel", "CQRS.Database.ReadModel\CQRS.Database.ReadModel.sqlproj", "{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,20 +61,20 @@ Global
 		{8507007F-97E5-4288-9112-93F437E7BFBB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8507007F-97E5-4288-9112-93F437E7BFBB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8507007F-97E5-4288-9112-93F437E7BFBB}.Release|x86.ActiveCfg = Release|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
-		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|x86.ActiveCfg = Release|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{B30F60D9-2EBB-4B7E-B1E0-F8F5ADF9221D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
